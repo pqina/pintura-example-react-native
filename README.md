@@ -4,6 +4,11 @@ Run `npm install` to install project dependencies, then run `npm start` to start
 
 After updating `@pqina/pintura` or `@pqina/pintura-video` we need to run `npm rebuild` to rebuild the Pintura WebView component.
 
+## Expo example projects
+
+- https://github.com/pqina/pintura-example-react-native-expo
+- https://github.com/pqina/pintura-example-react-native-expo-typescript
+
 ## How to run
 
 ### Android
