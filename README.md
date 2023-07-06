@@ -2,7 +2,12 @@
 
 Run `npm install` to install project dependencies, then run `npm start` to start the development server.
 
-After updating `@pqina/pintura` or `@pqina/pintura-video` we need to run `npm rebuild` to rebuild the Pintura WebView component.
+Post install the Pintura React Native component does two things:
+
+- It creates a `pintura.html` file in the Pintura React Native npm package folder, this file is used as a WebView source.
+- It copies the `pintura.html` file to the `android/app/src/main/assets` folder so it can be loaded by Android, iOS doesn't require this step.
+
+When we update `@pqina/pintura` or `@pqina/pintura-video` we need to run `npm rebuild` to rebuild the `pintura.html` file.
 
 ## Expo example projects
 

@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import PinturaEditor, {localFileToDataURL} from '@pqina/react-native-pintura';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import PinturaEditor from '@pqina/react-native-pintura';
 import {launchImageLibrary} from 'react-native-image-picker';
 
 import {
@@ -61,19 +61,6 @@ function App(): JSX.Element {
           <Text style={styles.buttonTextStyle}>Toggle</Text>
         </TouchableOpacity>
 
-        {/* Example updating editor image source */}
-        <TouchableOpacity
-          style={styles.buttonStyle}
-          onPress={() => {
-            const TestImage = require('./assets/image.jpeg');
-            const source = Image.resolveAssetSource(TestImage);
-            localFileToDataURL(source.uri).then(dataURL => {
-              setEditorImageSource(dataURL);
-            });
-          }}>
-          <Text style={styles.buttonTextStyle}>Test image</Text>
-        </TouchableOpacity>
-
         {/* Example running an editor function */}
         <TouchableOpacity
           style={styles.buttonStyle}
@@ -114,6 +101,7 @@ function App(): JSX.Element {
               return;
             }
 
+            // send data url to editor
             setEditorImageSource(`data:image/jpeg;base64,${asset.base64}`);
           }}>
           <Text style={styles.buttonTextStyle}>Browse...</Text>
