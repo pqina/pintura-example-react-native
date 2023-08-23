@@ -9,11 +9,6 @@ Post install the Pintura React Native component does two things:
 
 When we update `@pqina/pintura` or `@pqina/pintura-video` we need to run `npm rebuild` to rebuild the `pintura.html` file.
 
-## Expo example projects
-
-- https://github.com/pqina/pintura-example-react-native-expo
-- https://github.com/pqina/pintura-example-react-native-expo-typescript
-
 ## How to run
 
 ### Android
