@@ -1,6 +1,6 @@
 {
   "name": "pintura-example-react-native",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -13,9 +13,11 @@
   },
   "dependencies": {
     "@pqina/pintura": "^8.x",
+    "@pqina/pintura-video": "^1.6.3",
     "@pqina/react-native-pintura": "^9.x",
     "react": "18.2.0",
     "react-native": "0.71.11",
+    "react-native-fs": "^2.20.0",
     "react-native-image-picker": "^6.0.0",
     "react-native-webview": "^13.2.2"
   },

@@ -1,10 +1,13 @@
 import React, {useRef, useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import PinturaEditor from '@pqina/react-native-pintura';
 import {launchImageLibrary} from 'react-native-image-picker';
+import RNFS from 'react-native-fs';
 
+// PinturaEditor component import
+import PinturaEditor from '@pqina/react-native-pintura';
+
+// Pintura imports
 import {
-  ImageSource,
   createMarkupEditorToolStyle,
   createMarkupEditorToolStyles,
 } from '@pqina/pintura';
@@ -12,8 +15,9 @@ import {
 function App(): JSX.Element {
   const [editorEnabled, setEditorEnabled] = useState(true);
 
-  const [editorImageSource, setEditorImageSource] =
-    useState<ImageSource>(undefined);
+  const [editorSource, setEditorSource] = useState<string | undefined>(
+    undefined,
+  );
 
   const editorRef = useRef<PinturaEditor>(null);
 
@@ -37,7 +41,7 @@ function App(): JSX.Element {
             }),
           })}
           imageCropAspectRatio={1}
-          src={editorImageSource}
+          src={editorSource}
           onLoaderror={err => {
             console.log('onLoaderror', err);
           }}
@@ -81,10 +85,12 @@ function App(): JSX.Element {
           onPress={async () => {
             // Use ImagePicker to get a base64 image string
             let {assets, didCancel} = await launchImageLibrary({
-              mediaType: 'photo',
+              mediaType: 'mixed',
               selectionLimit: 1,
               quality: 1,
               includeBase64: true,
+              // videoQuality: 'high',
+              // formatAsMp4: true,
             });
 
             // user cancelled early
@@ -96,13 +102,19 @@ function App(): JSX.Element {
             const [asset] = assets;
 
             // Somehow the asset size can be 0
-            if (asset.width === 0 || asset.height === 0) {
+            if (!asset.uri || asset.width === 0 || asset.height === 0) {
               console.error('Failed to load', asset);
               return;
             }
 
+            // video to base64
+            let base64 = asset.base64;
+            if (!base64) {
+              base64 = await RNFS.readFile(asset.uri, 'base64');
+            }
+
             // send data url to editor
-            setEditorImageSource(`data:image/jpeg;base64,${asset.base64}`);
+            setEditorSource(`data:${asset.type};base64,${base64}`);
           }}>
           <Text style={styles.buttonTextStyle}>Browse...</Text>
         </TouchableOpacity>
