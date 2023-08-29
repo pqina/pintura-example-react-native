@@ -89,8 +89,6 @@ function App(): JSX.Element {
               selectionLimit: 1,
               quality: 1,
               includeBase64: true,
-              // videoQuality: 'high',
-              // formatAsMp4: true,
             });
 
             // user cancelled early

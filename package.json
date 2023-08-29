@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@pqina/pintura": "^8.x",
-    "@pqina/pintura-video": "^1.6.3",
     "@pqina/react-native-pintura": "^9.x",
     "react": "18.2.0",
     "react-native": "0.71.11",
