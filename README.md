@@ -19,6 +19,8 @@ When we update `@pqina/pintura` or `@pqina/pintura-video` we need to run `npm re
 npx react-native run-android
 ```
 
+- Make sure your `AndroidManifest.xml` has this prop `android:windowSoftInputMode` set to `"adjustPan"` so keyboard interaction in the editor works correctly.
+
 ### iOS
 
 ```
